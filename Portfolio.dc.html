@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  ::selection{background:#E8893D;color:#0B0F14;}
+  @keyframes pfblink{50%{opacity:0;}}
+  @keyframes pfscan{0%{top:0;opacity:.9;}100%{top:100%;opacity:0;}}
+  .pf-topbar{display:none;}
+  .pf-mobilemenu{display:none;}
+  .pf-diagram-v{display:none;}
+  a:focus-visible,button:focus-visible{outline:1px solid #E8893D;outline-offset:2px;}
+  @media(max-width:920px){
+    .pf-sidebar{display:none !important;}
+    .pf-topbar{display:flex !important;}
+    .pf-main{margin-left:0 !important;}
+    .pf-main-inner{padding:78px 18px 100px !important;}
+    .pf-diagram-h{display:none !important;}
+    .pf-diagram-v{display:flex !important;}
+    .pf-mobilemenu.open{display:block !important;}
+    .pf-hero-name{font-size:44px !important;}
+    .pf-sec-pad{padding:20px 18px !important;}
+  }
+</style>
+</helmet>
+<div class="pf" ref="{{ rootRef }}" style="--bg:#0B0F14;--surface:#121821;--line:#232C38;--text:#E7EAEE;--text-muted:#6E7B8A;--accent:#E8893D;--accent-dim:#7A4F2A;--status:#5FB88F;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter',system-ui,sans-serif;position:relative;min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;">
+
+  <div style="position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.5;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:95px 95px;background-position:-1px -1px;"></div>
+
+  <aside class="pf-sidebar" style="position:fixed;top:0;left:0;width:240px;height:100vh;border-right:1px solid var(--line);background:var(--surface);padding:28px 18px;box-sizing:border-box;z-index:20;">
+    <div style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text);margin-bottom:22px;">
+      <span style="width:8px;height:8px;background:var(--accent);display:inline-block;"></span>mohamed-younes/
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:1px;">
+      <a data-nav href="#hero" style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 8px;transition:color .2s;"><span data-square style="width:6px;height:6px;background:var(--accent);opacity:0;flex:none;"></span><span>├── hero</span></a>
+      <a data-nav href="#education" style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 8px;transition:color .2s;"><span data-square style="width:6px;height:6px;background:var(--accent);opacity:0;flex:none;"></span><span>├── education</span></a>
+      <a data-nav href="#experience" style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 8px;transition:color .2s;"><span data-square style="width:6px;height:6px;background:var(--accent);opacity:0;flex:none;"></span><span>├── experience</span></a>
+      <a data-nav href="#projects" style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 8px;transition:color .2s;"><span data-square style="width:6px;height:6px;background:var(--accent);opacity:0;flex:none;"></span><span>├── projects</span></a>
+      <a data-nav href="#achievements" style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 8px;transition:color .2s;"><span data-square style="width:6px;height:6px;background:var(--accent);opacity:0;flex:none;"></span><span>├── achievements</span></a>
+      <a data-nav href="#skills" style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 8px;transition:color .2s;"><span data-square style="width:6px;height:6px;background:var(--accent);opacity:0;flex:none;"></span><span>├── skills</span></a>
+      <a data-nav href="#contact" style="display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 8px;transition:color .2s;"><span data-square style="width:6px;height:6px;background:var(--accent);opacity:0;flex:none;"></span><span>└── contact</span></a>
+    </nav>
+    <div style="position:absolute;bottom:24px;left:18px;right:18px;font-family:var(--mono);font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:7px;"><span style="width:6px;height:6px;background:var(--status);display:inline-block;"></span>systems online</div>
+  </aside>
+
+  <header class="pf-topbar" style="position:fixed;top:0;left:0;right:0;height:52px;border-bottom:1px solid var(--line);background:var(--surface);z-index:30;align-items:center;justify-content:space-between;padding:0 16px;">
+    <span style="font-family:var(--mono);font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="width:7px;height:7px;background:var(--accent);display:inline-block;"></span>mohamed-younes/</span>
+    <button data-hamburger style="background:transparent;border:1px solid var(--line);color:var(--text);font-family:var(--mono);font-size:16px;padding:5px 11px;cursor:pointer;line-height:1;">≡</button>
+    <div class="pf-mobilemenu" style="position:absolute;top:52px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px;">
+      <a data-navm href="#hero" style="display:block;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:9px 10px;">├── hero</a>
+      <a data-navm href="#education" style="display:block;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:9px 10px;">├── education</a>
+      <a data-navm href="#experience" style="display:block;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:9px 10px;">├── experience</a>
+      <a data-navm href="#projects" style="display:block;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:9px 10px;">├── projects</a>
+      <a data-navm href="#achievements" style="display:block;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:9px 10px;">├── achievements</a>
+      <a data-navm href="#skills" style="display:block;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:9px 10px;">├── skills</a>
+      <a data-navm href="#contact" style="display:block;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;padding:9px 10px;">└── contact</a>
+    </div>
+  </header>
+
+  <main class="pf-main" style="margin-left:240px;position:relative;z-index:1;">
+    <div class="pf-main-inner" style="max-width:1140px;margin:0 auto;padding:84px 56px 130px;">
+
+      <!-- ===== HERO ===== -->
+      <section id="hero" data-screen-label="hero" style="scroll-margin-top:80px;min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding-bottom:40px;">
+        <div data-boot style="font-family:var(--mono);font-size:14px;line-height:1.95;margin-bottom:44px;min-height:170px;">
+          <div><span style="color:var(--accent);">&gt; </span><span data-text="whoami"></span></div>
+          <div style="color:var(--text-muted);"><span data-text="mohamed_younes — backend &amp; ai/ml engineer"></span></div>
+          <div style="margin-top:6px;"><span style="color:var(--accent);">&gt; </span><span data-text="cat status.txt"></span></div>
+          <div style="color:var(--text-muted);"><span data-text="CS @ Arab Academy for Science &amp; Technology · GPA 3.72/4.00"></span></div>
+          <div style="color:var(--text-muted);"><span data-text="ACPC Finalist · ECPC National Finalist — 2 of 3 cycles"></span></div>
+          <div style="margin-top:6px;"><span style="color:var(--accent);">&gt; </span><span data-text="system.ready()"></span></div>
+        </div>
+
+        <div data-herobody style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;">
+          <div class="pf-hero-name" style="font-family:var(--mono);font-weight:700;font-size:92px;letter-spacing:-0.01em;line-height:1.04;color:var(--text);">mohamed_younes</div>
+          <p style="font-family:var(--sans);font-size:19px;line-height:1.6;color:var(--text-muted);max-width:640px;margin:18px 0 0;text-wrap:pretty;">Backend &amp; AI/ML engineer building production systems — a runtime-swappable RAG API, an on-device vision app for the visually impaired, and ML pipelines tuned for the metric that actually matters.</p>
+
+          <!-- horizontal circuit diagram (desktop) -->
+          <div class="pf-diagram-h" style="margin-top:44px;border:1px solid var(--line);background:var(--surface);padding:6px;">
+            <svg data-svg viewBox="0 0 1140 220" style="width:100%;height:auto;display:block;font-family:var(--mono);">
+              <path data-connector d="M220,60 H262 V150 H310" fill="none" stroke="#232C38" stroke-width="1"></path>
+              <path data-connector d="M520,150 H570 V60 H620" fill="none" stroke="#232C38" stroke-width="1"></path>
+              <path data-connector d="M830,60 H880 V150 H930" fill="none" stroke="#232C38" stroke-width="1"></path>
+              <path data-pulse d="M220,60 H262 V150 H310" fill="none" stroke="#E8893D" stroke-width="2" style="stroke-dasharray:18 9999;stroke-dashoffset:9999;"></path>
+              <path data-pulse d="M520,150 H570 V60 H620" fill="none" stroke="#E8893D" stroke-width="2" style="stroke-dasharray:18 9999;stroke-dashoffset:9999;"></path>
+              <path data-pulse d="M830,60 H880 V150 H930" fill="none" stroke="#E8893D" stroke-width="2" style="stroke-dasharray:18 9999;stroke-dashoffset:9999;"></path>
+
+              <g data-node><rect x="10" y="30" width="210" height="60" fill="#121821" stroke="#232C38" stroke-width="1" style-hover="stroke:#7A4F2A;"></rect><text x="22" y="55" fill="#6E7B8A" font-size="10">// service</text><text x="22" y="74" fill="#E7EAEE" font-size="15">RAG API</text></g>
+              <g data-node><rect x="310" y="120" width="210" height="60" fill="#121821" stroke="#232C38" stroke-width="1" style-hover="stroke:#7A4F2A;"></rect><text x="322" y="145" fill="#6E7B8A" font-size="10">// vision</text><text x="322" y="164" fill="#E7EAEE" font-size="15">YOLOv11s · 0.995 mAP</text></g>
+              <g data-node><rect x="620" y="30" width="210" height="60" fill="#121821" stroke="#232C38" stroke-width="1" style-hover="stroke:#7A4F2A;"></rect><text x="632" y="55" fill="#6E7B8A" font-size="10">// contest</text><text x="632" y="74" fill="#E7EAEE" font-size="15">ACPC #28 / 2000+</text></g>
+              <g data-node><rect x="930" y="120" width="200" height="60" fill="#121821" stroke="#232C38" stroke-width="1" style-hover="stroke:#7A4F2A;"></rect><text x="942" y="145" fill="#6E7B8A" font-size="10">// model</text><text x="942" y="164" fill="#E7EAEE" font-size="15">Recall 99%</text></g>
+
+              <circle data-pulsehead r="3.5" fill="#E8893D" cx="0" cy="0" style="opacity:0;"></circle>
+            </svg>
+          </div>
+
+          <!-- vertical diagram (mobile) -->
+          <div class="pf-diagram-v" style="margin-top:32px;flex-direction:column;gap:0;align-items:center;">
+            <div style="border:1px solid var(--line);background:var(--surface);padding:12px 16px;width:100%;font-family:var(--mono);"><div style="color:var(--text-muted);font-size:10px;">// service</div><div style="font-size:14px;">RAG API</div></div>
+            <div style="width:1px;height:20px;background:var(--accent-dim);"></div>
+            <div style="border:1px solid var(--line);background:var(--surface);padding:12px 16px;width:100%;font-family:var(--mono);"><div style="color:var(--text-muted);font-size:10px;">// vision</div><div style="font-size:14px;">YOLOv11s · 0.995 mAP</div></div>
+            <div style="width:1px;height:20px;background:var(--accent-dim);"></div>
+            <div style="border:1px solid var(--line);background:var(--surface);padding:12px 16px;width:100%;font-family:var(--mono);"><div style="color:var(--text-muted);font-size:10px;">// contest</div><div style="font-size:14px;">ACPC #28 / 2000+</div></div>
+            <div style="width:1px;height:20px;background:var(--accent-dim);"></div>
+            <div style="border:1px solid var(--line);background:var(--surface);padding:12px 16px;width:100%;font-family:var(--mono);"><div style="color:var(--text-muted);font-size:10px;">// model</div><div style="font-size:14px;">Recall 99%</div></div>
+          </div>
+
+          <div style="display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;">
+            <button data-viewsource style="font-family:var(--mono);font-size:14px;color:var(--text);background:transparent;border:1px solid var(--line);padding:13px 18px;cursor:pointer;transition:border-color .2s,color .2s;" style-hover="border-color:#E8893D;">[ view_source ↓ ]</button>
+            <button data-resume style="font-family:var(--mono);font-size:14px;color:var(--text);background:transparent;border:1px solid var(--line);padding:13px 18px;cursor:pointer;transition:border-color .2s,color .2s;" style-hover="border-color:#E8893D;">[ download_resume.pdf ]</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== EDUCATION ===== -->
+      <section id="education" data-screen-label="education" data-reveal style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;scroll-margin-top:80px;margin-bottom:84px;">
+        <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+        <div style="border:1px solid var(--line);background:var(--surface);">
+          <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);">
+            <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+            <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/education/record.txt</span>
+          </div>
+          <div class="pf-sec-pad" style="padding:28px 30px;">
+            <div style="font-family:var(--mono);font-size:16px;color:var(--text);margin-bottom:6px;">Arab Academy for Science and Technology</div>
+            <div style="font-family:var(--sans);font-size:15px;color:var(--text-muted);margin-bottom:26px;">B.Sc. Computer Science · Cairo, Egypt</div>
+            <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--text-muted);margin-bottom:7px;"><span>Feb 2023</span><span>build: 100% · graduated</span><span>June 2026</span></div>
+            <div style="height:6px;background:var(--bg);border:1px solid var(--line);"><div data-bar data-fill="100%" style="height:100%;width:0;background:var(--accent-dim);transition:width 1.3s cubic-bezier(.2,.7,.2,1);"></div></div>
+            <div style="margin-top:26px;font-family:var(--mono);font-size:16px;color:var(--text);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">GPA: <span data-count="3.72" data-decimals="2" style="color:var(--text);">0.00</span> <span style="color:var(--text-muted);">/ 4.00</span> <span style="color:var(--status);border:1px solid var(--status);padding:2px 9px;font-size:12px;">[PASS]</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== EXPERIENCE ===== -->
+      <section id="experience" data-screen-label="experience" data-reveal data-cascade style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;scroll-margin-top:80px;margin-bottom:84px;">
+        <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+        <div style="border:1px solid var(--line);background:var(--surface);">
+          <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);">
+            <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+            <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/experience · git log --oneline</span>
+          </div>
+          <div class="pf-sec-pad" style="padding:28px 30px;">
+            <div data-stagger style="opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;margin-bottom:26px;padding-left:18px;border-left:1px solid var(--line);">
+              <div style="font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:7px;"><span style="color:var(--accent);">a3f9c1e</span> · Sep 2024</div>
+              <div style="font-family:var(--mono);font-size:16px;color:var(--text);margin-bottom:12px;">Frontend Software Engineer Intern <span style="color:var(--text-muted);">— ROWAD Modern Engineering</span></div>
+              <div style="display:flex;gap:9px;margin-bottom:6px;font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--text);"><span style="color:var(--status);font-family:var(--mono);">+</span><span>Built a React ticketing portal with Formik validation across 5 forms (Material-UI).</span></div>
+              <div style="display:flex;gap:9px;font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--text);"><span style="color:var(--status);font-family:var(--mono);">+</span><span>Reduced submission errors by 50% and issue-reporting time by 40%.</span></div>
+            </div>
+            <div data-stagger style="opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;padding-left:18px;border-left:1px solid var(--line);">
+              <div style="font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:7px;"><span style="color:var(--accent);">7c2e9b4</span> · Aug 2025 – Nov 2025</div>
+              <div style="font-family:var(--mono);font-size:16px;color:var(--text);margin-bottom:12px;">AI &amp; Machine Learning Track <span style="color:var(--text-muted);">— Samsung Innovation Campus</span></div>
+              <div style="display:flex;gap:9px;margin-bottom:6px;font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--text);"><span style="color:var(--status);font-family:var(--mono);">+</span><span>Completed a 260-hour AI/ML program: preprocessing → feature engineering → training → evaluation → deployment.</span></div>
+              <div style="display:flex;gap:9px;margin-bottom:6px;font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--text);"><span style="color:var(--status);font-family:var(--mono);">+</span><span>Built models with Scikit-learn &amp; TensorFlow; applied CNNs, transfer learning, and Transformers.</span></div>
+              <div style="display:flex;gap:9px;font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--text);"><span style="color:var(--status);font-family:var(--mono);">+</span><span>Delivered capstone projects spanning raw data to deployable model.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PROJECTS ===== -->
+      <section id="projects" data-screen-label="projects" style="scroll-margin-top:80px;margin-bottom:40px;">
+        <div style="font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:22px;">~/projects <span style="color:var(--text);">— 4 systems shipped</span></div>
+
+        <!-- Mini RAG API -->
+        <div data-reveal style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;margin-bottom:28px;">
+          <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+          <div style="border:1px solid var(--line);background:var(--surface);">
+            <div data-projhead style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);cursor:default;">
+              <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+              <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/projects/mini-rag-api.py</span><span data-caret style="font-family:var(--mono);font-size:13px;color:var(--accent);opacity:0;animation:pfblink 1s steps(1) infinite;">_</span>
+            </div>
+            <div class="pf-sec-pad" style="padding:26px 30px;">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;font-family:var(--mono);font-size:12px;">
+                <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">upload</span><span style="color:var(--accent);">→</span>
+                <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">chunk</span><span style="color:var(--accent);">→</span>
+                <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">embed</span><span style="color:var(--accent);">→</span>
+                <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">pgvector search</span>
+              </div>
+              <div data-deps style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;">
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">python</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">fastapi</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">pgvector</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">sqlalchemy</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">docker</span>
+              </div>
+              <p style="font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--text);margin:0 0 18px;max-width:760px;text-wrap:pretty;">Decoupled the vector DB and LLM providers (Factory + Strategy) so either can be swapped at runtime with zero change to core logic. Containerized with Docker Compose; local inference via Ollama tunneled through Ngrok.</p>
+              <a href="https://github.com/mohamedAY2004/my-mini-rag" target="_blank" rel="noopener" style="display:inline-flex;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);padding:9px 13px;transition:.2s;" style-hover="border-color:#7A4F2A;color:#E7EAEE;"><span style="color:var(--accent);">$</span>git clone github.com/mohamedAY2004/my-mini-rag</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- I See -->
+        <div data-reveal style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;margin-bottom:28px;">
+          <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+          <div style="border:1px solid var(--line);background:var(--surface);">
+            <div data-projhead style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);cursor:default;">
+              <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+              <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/projects/i-see.apk</span><span data-caret style="font-family:var(--mono);font-size:13px;color:var(--accent);opacity:0;animation:pfblink 1s steps(1) infinite;">_</span>
+            </div>
+            <div class="pf-sec-pad" style="padding:26px 30px;">
+              <div style="margin-bottom:20px;font-family:var(--mono);font-size:12px;">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+                  <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">camera feed</span><span style="color:var(--accent);">→</span>
+                  <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">YOLOv11s · TFLite FP16</span><span style="color:var(--accent);">→</span>
+                  <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">obstacle alert</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-left:18px;color:var(--text-muted);">
+                  <span style="color:var(--accent-dim);">↳ branch</span>
+                  <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">banknote · YOLOv8s · 0.995 mAP</span>
+                  <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">ML Kit OCR</span>
+                </div>
+              </div>
+              <div data-deps style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;">
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">yolov11s</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">yolov8s</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">tflite</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">mlkit</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">android</span>
+              </div>
+              <p style="font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--text);margin:0 0 18px;max-width:760px;text-wrap:pretty;">Fully on-device — no network dependency, the constraint that matters most here. Real-time obstacle detection, a custom banknote model trained on 10,000+ images, and OCR for the visually impaired. Validated through UAT under simulated blindness.</p>
+              <a href="https://github.com/mohamedAY2004/Egyptian-Currency-Object-detection" target="_blank" rel="noopener" style="display:inline-flex;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);padding:9px 13px;transition:.2s;" style-hover="border-color:#7A4F2A;color:#E7EAEE;"><span style="color:var(--accent);">$</span>git clone github.com/mohamedAY2004/Egyptian-Currency-Object-detection</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heart Failure -->
+        <div data-reveal style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;margin-bottom:28px;">
+          <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+          <div style="border:1px solid var(--line);background:var(--surface);">
+            <div data-projhead style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);cursor:default;">
+              <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+              <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/projects/heart-failure.ipynb</span><span data-caret style="font-family:var(--mono);font-size:13px;color:var(--accent);opacity:0;animation:pfblink 1s steps(1) infinite;">_</span>
+            </div>
+            <div class="pf-sec-pad" style="padding:26px 30px;">
+              <div data-counts style="display:flex;gap:42px;flex-wrap:wrap;margin-bottom:22px;">
+                <div><div style="font-family:var(--mono);font-size:40px;font-weight:700;color:var(--accent);line-height:1;"><span data-count="8">0</span></div><div style="font-family:var(--mono);font-size:12px;color:var(--text-muted);margin-top:7px;">classifiers trained</div></div>
+                <div><div style="font-family:var(--mono);font-size:40px;font-weight:700;color:var(--accent);line-height:1;"><span data-count="99">0</span>%</div><div style="font-family:var(--mono);font-size:12px;color:var(--text-muted);margin-top:7px;">recall</div></div>
+                <div><div style="font-family:var(--mono);font-size:40px;font-weight:700;color:var(--text);line-height:1;"><span data-count="81">0</span>%</div><div style="font-family:var(--mono);font-size:12px;color:var(--text-muted);margin-top:7px;">accuracy</div></div>
+              </div>
+              <div data-deps style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;">
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">python</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">scikit-learn</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">xgboost</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">pandas</span>
+              </div>
+              <p style="font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--text);margin:0 0 18px;max-width:760px;text-wrap:pretty;">Recall was prioritized over precision on purpose: in screening for heart failure, a missed diagnosis costs far more than a false alarm. The pipeline trains and tunes eight classifiers across EDA, feature engineering, and normalization.</p>
+              <a href="https://github.com/mohamedAY2004/Heart-Failure-Analysis---Modeling" target="_blank" rel="noopener" style="display:inline-flex;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);padding:9px 13px;transition:.2s;" style-hover="border-color:#7A4F2A;color:#E7EAEE;"><span style="color:var(--accent);">$</span>git clone github.com/mohamedAY2004/Heart-Failure-Analysis---Modeling</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nile Academy -->
+        <div data-reveal style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;margin-bottom:28px;">
+          <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+          <div style="border:1px solid var(--line);background:var(--surface);">
+            <div data-projhead style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);cursor:default;">
+              <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+              <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/projects/nile-academy</span><span data-caret style="font-family:var(--mono);font-size:13px;color:var(--accent);opacity:0;animation:pfblink 1s steps(1) infinite;">_</span>
+            </div>
+            <div class="pf-sec-pad" style="padding:26px 30px;">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;font-family:var(--mono);font-size:12px;">
+                <span style="border:1px solid var(--line);background:var(--bg);color:var(--text-muted);padding:5px 11px;">PHP / MySQL</span>
+                <span style="color:var(--accent);">→ migrate →</span>
+                <span style="border:1px solid var(--line);background:var(--bg);color:var(--text);padding:5px 11px;">Java EE · Servlets / JDBC / JSP</span>
+              </div>
+              <div data-deps style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;">
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">php</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">mysql</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">java-ee</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">jsp</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">jdbc</span>
+              </div>
+              <p style="font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--text);margin:0 0 18px;max-width:760px;text-wrap:pretty;">A migration story: a full-stack learning-center portal rebuilt from PHP/MySQL to Java EE, with a redesigned schema that cut average response time by 50%.</p>
+              <div style="display:flex;flex-direction:column;gap:9px;">
+                <a href="https://github.com/mohamedAY2004/NileAcademy" target="_blank" rel="noopener" style="display:inline-flex;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);padding:9px 13px;transition:.2s;width:fit-content;" style-hover="border-color:#7A4F2A;color:#E7EAEE;"><span style="color:var(--accent);">$</span>git clone github.com/mohamedAY2004/NileAcademy <span style="color:var(--text-muted);">// php</span></a>
+                <a href="https://github.com/mohamedAY2004/Nile-Academy-Servlets-" target="_blank" rel="noopener" style="display:inline-flex;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);padding:9px 13px;transition:.2s;width:fit-content;" style-hover="border-color:#7A4F2A;color:#E7EAEE;"><span style="color:var(--accent);">$</span>git clone github.com/mohamedAY2004/Nile-Academy-Servlets- <span style="color:var(--text-muted);">// java</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ACHIEVEMENTS ===== -->
+      <section id="achievements" data-screen-label="achievements" data-reveal style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;scroll-margin-top:80px;margin-bottom:84px;">
+        <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+        <div style="border:1px solid var(--line);background:var(--surface);">
+          <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);">
+            <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+            <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/achievements/scoreboard</span>
+          </div>
+          <div data-counts class="pf-sec-pad" style="padding:30px;display:flex;flex-direction:column;gap:0;">
+            <div style="display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);">
+              <div style="font-family:var(--mono);font-size:12px;color:var(--text-muted);letter-spacing:.08em;">RANK</div>
+              <div><span style="font-family:var(--mono);font-size:44px;font-weight:700;color:var(--accent);line-height:1;"><span data-count="28">0</span></span><span style="font-family:var(--mono);font-size:20px;color:var(--text-muted);"> / 2,000+</span><div style="font-family:var(--sans);font-size:14px;color:var(--text-muted);margin-top:6px;">Egyptian teams · ECPC qualifier</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);">
+              <div style="font-family:var(--mono);font-size:12px;color:var(--text-muted);letter-spacing:.08em;">REGIONAL</div>
+              <div><span style="font-family:var(--mono);font-size:44px;font-weight:700;color:var(--accent);line-height:1;"><span data-count="78">0</span>th</span><div style="font-family:var(--sans);font-size:14px;color:var(--text-muted);margin-top:6px;">across Africa &amp; the Arab world</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:baseline;padding:18px 0;">
+              <div style="font-family:var(--mono);font-size:12px;color:var(--text-muted);letter-spacing:.08em;">FINALIST</div>
+              <div><span style="font-family:var(--mono);font-size:44px;font-weight:700;color:var(--accent);line-height:1;"><span data-count="2">0</span></span><span style="font-family:var(--mono);font-size:20px;color:var(--text-muted);"> / 3 cycles</span><div style="font-family:var(--sans);font-size:14px;color:var(--text-muted);margin-top:6px;">ECPC National Finalist · 2023–2025</div></div>
+            </div>
+            <a href="https://icpc.global/ICPCID/37TPB246H5XT" target="_blank" rel="noopener" style="margin-top:20px;width:fit-content;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);padding:8px 13px;transition:.2s;" style-hover="border-color:#7A4F2A;color:#E7EAEE;"><span style="color:var(--accent);">--</span>profile <span style="color:var(--text);">icpc.global</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SKILLS ===== -->
+      <section id="skills" data-screen-label="skills" data-reveal data-cascade style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;scroll-margin-top:80px;margin-bottom:84px;">
+        <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+        <div style="border:1px solid var(--line);background:var(--surface);">
+          <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);">
+            <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+            <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/skills · tree</span>
+          </div>
+          <div class="pf-sec-pad" style="padding:28px 30px;font-family:var(--mono);font-size:14px;line-height:2;">
+            <div data-stagger style="opacity:0;transform:translateY(6px);transition:.4s;color:var(--text-muted);"><span data-treecat style="color:var(--text-muted);transition:color .18s;" style-hover="color:#E8893D;">├── languages/</span>&nbsp;&nbsp;&nbsp;<span style="color:var(--text);">python · c/c++ · java · javascript · sql · html/css</span></div>
+            <div data-stagger style="opacity:0;transform:translateY(6px);transition:.4s;color:var(--text-muted);"><span data-treecat style="color:var(--text-muted);transition:color .18s;" style-hover="color:#E8893D;">├── ml-ai/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--text);">tensorflow · scikit-learn · yolo (v8/v11) · mediapipe · opencv</span></div>
+            <div data-stagger style="opacity:0;transform:translateY(6px);transition:.4s;color:var(--text-muted);"><span data-treecat style="color:var(--text-muted);transition:color .18s;" style-hover="color:#E8893D;">├── concepts/</span>&nbsp;&nbsp;&nbsp;<span style="color:var(--text);">rag · llms · computer vision · nlp · object detection</span></div>
+            <div data-stagger style="opacity:0;transform:translateY(6px);transition:.4s;color:var(--text-muted);"><span data-treecat style="color:var(--text-muted);transition:color .18s;" style-hover="color:#E8893D;">└── engineering/</span>&nbsp;<span style="color:var(--text);">fastapi · spring boot · react · postgresql · docker · git</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <section id="contact" data-screen-label="contact" data-reveal style="position:relative;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;scroll-margin-top:80px;">
+        <div data-scan style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;pointer-events:none;z-index:5;"></div>
+        <div style="border:1px solid var(--line);background:var(--surface);">
+          <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);">
+            <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span><span style="width:9px;height:9px;background:var(--line);"></span></span>
+            <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/contact — mohamed@portfolio</span>
+          </div>
+          <div class="pf-sec-pad" style="padding:30px;font-family:var(--mono);font-size:14px;line-height:2.1;color:var(--text);overflow-wrap:anywhere;">
+            <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> contact --email <a href="/cdn-cgi/l/email-protection#7f12161b10510610111a0c4e3f18121e1613511c1012" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;"><span class="__cf_email__" data-cfemail="f69b9f9299d88f99989385c7b6919b979f9ad895999b">[email&#160;protected]</span></a> <span style="color:var(--text-muted);">--phone</span> +20 111 227 3329</div>
+            <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> open <a href="https://www.linkedin.com/in/mohamed-younes-152820266/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;">--linkedin</a> <a href="https://github.com/mohamedAY2004" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;">--github</a></div>
+            <div><span style="color:var(--text);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> <span style="display:inline-block;width:9px;height:18px;background:var(--accent);vertical-align:-3px;animation:pfblink 1s steps(1) infinite;"></span></div>
+          </div>
+        </div>
+        <div style="margin-top:22px;font-family:var(--mono);font-size:11px;color:var(--text-muted);">// built as a system · square corners, hairlines, one signal pulse · © 2026 mohamed younes</div>
+      </section>
+
+    </div>
+  </main>
+</div>
+</x-dc>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+
+  componentDidMount() {
+    const root = this.rootRef.current;
+    if (!root) return;
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.pulsing = false;
+
+    this.setupNav(root);
+    this.setupReveals(root);
+    this.setupDiagram(root);
+    this.setupHovers(root);
+    this.setupButtons(root);
+    this.setupMobile(root);
+
+    if (this.reduce) {
+      this.fillBootInstant(root);
+      this.revealAll(root);
+    } else {
+      this.runBoot(root);
+    }
+
+    this.onScroll = () => {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(() => {
+        this._raf = 0;
+        if (this._revealCheck) this._revealCheck();
+        if (this._activeCheck) this._activeCheck();
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.onScroll();
+
+    // safety fallbacks
+    this.safety = setTimeout(() => {
+      const hb = root.querySelector('[data-herobody]');
+      if (hb && hb.style.opacity !== '1') { hb.style.opacity = '1'; hb.style.transform = 'none'; }
+      root.querySelectorAll('[data-text]').forEach(el => { if (!el.textContent) el.textContent = el.getAttribute('data-text'); });
+    }, 4500);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.safety); clearTimeout(this.bootTimer);
+    if (this.onScroll) { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll); }
+  }
+
+  /* ---------- boot typing ---------- */
+  runBoot(root) {
+    const nodes = [...root.querySelectorAll('[data-text]')];
+    let i = 0;
+    const typeNode = () => {
+      if (i >= nodes.length) { this.afterBoot(root); return; }
+      const el = nodes[i];
+      const full = el.getAttribute('data-text');
+      el.style.borderRight = '2px solid var(--accent)';
+      let c = 0;
+      const tick = () => {
+        el.textContent = full.slice(0, c);
+        c++;
+        if (c <= full.length) { this.bootTimer = setTimeout(tick, 9); }
+        else { el.style.borderRight = 'none'; i++; setTimeout(typeNode, 95); }
+      };
+      tick();
+    };
+    typeNode();
+  }
+  afterBoot(root) {
+    const hb = root.querySelector('[data-herobody]');
+    if (hb) { hb.style.opacity = '1'; hb.style.transform = 'none'; }
+  }
+  fillBootInstant(root) {
+    root.querySelectorAll('[data-text]').forEach(el => { el.textContent = el.getAttribute('data-text'); });
+    this.afterBoot(root);
+  }
+
+  /* ---------- sidebar nav ---------- */
+  setupNav(root) {
+    const links = [...root.querySelectorAll('[data-nav]')];
+    const setActive = (id) => {
+      links.forEach(l => {
+        const on = l.getAttribute('href') === '#' + id;
+        l.style.color = on ? 'var(--accent)' : 'var(--text-muted)';
+        const sq = l.querySelector('[data-square]');
+        if (sq) sq.style.opacity = on ? '1' : '0';
+      });
+    };
+    const sections = ['hero','education','experience','projects','achievements','skills','contact']
+      .map(id => root.querySelector('#' + id)).filter(Boolean);
+    setActive('hero');
+    this._activeCheck = () => {
+      const mark = window.innerHeight * 0.38;
+      let cur = sections.length ? sections[0].id : 'hero';
+      sections.forEach(s => { if (s.getBoundingClientRect().top <= mark) cur = s.id; });
+      setActive(cur);
+    };
+
+    const bind = (sel) => root.querySelectorAll(sel).forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || href[0] !== '#') return;
+        e.preventDefault();
+        const t = root.querySelector(href);
+        if (t) window.scrollTo({ top: window.scrollY + t.getBoundingClientRect().top - 32, behavior: this.reduce ? 'auto' : 'smooth' });
+        const menu = root.querySelector('.pf-mobilemenu');
+        if (menu) menu.classList.remove('open');
+      });
+    });
+    bind('[data-nav]'); bind('[data-navm]');
+  }
+
+  /* ---------- scroll reveals + counters ---------- */
+  setupReveals(root) {
+    const reveal = (el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      const scan = el.querySelector('[data-scan]');
+      if (scan && !this.reduce) { scan.style.animation = 'none'; void scan.offsetWidth; scan.style.animation = 'pfscan .18s linear'; }
+      if (el.hasAttribute('data-cascade')) {
+        [...el.querySelectorAll('[data-stagger]')].forEach((c, i) => {
+          setTimeout(() => { c.style.opacity = '1'; c.style.transform = 'none'; }, this.reduce ? 0 : i * 55);
+        });
+      }
+      el.querySelectorAll('[data-count]').forEach(n => this.animateCount(n));
+      const bar = el.querySelector('[data-bar]');
+      if (bar) bar.style.width = bar.getAttribute('data-fill') || '100%';
+    };
+    if (this.reduce) { this._revealCheck = () => {}; return; }
+    this._reveals = [...root.querySelectorAll('[data-reveal]')].map(el => ({ el, done: false }));
+    this._revealCheck = () => {
+      const trig = window.innerHeight * 0.86;
+      this._reveals.forEach(o => {
+        if (!o.done && o.el.getBoundingClientRect().top < trig) { o.done = true; reveal(o.el); }
+      });
+    };
+  }
+  revealAll(root) {
+    root.querySelectorAll('[data-reveal]').forEach(el => {
+      el.style.opacity = '1'; el.style.transform = 'none';
+      el.querySelectorAll('[data-stagger]').forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
+      el.querySelectorAll('[data-count]').forEach(n => {
+        const dec = parseInt(n.getAttribute('data-decimals') || '0', 10);
+        n.textContent = parseFloat(n.getAttribute('data-count')).toFixed(dec);
+      });
+      const bar = el.querySelector('[data-bar]');
+      if (bar) bar.style.width = bar.getAttribute('data-fill') || '100%';
+    });
+  }
+  animateCount(n) {
+    if (n.getAttribute('data-done')) return;
+    n.setAttribute('data-done', '1');
+    const target = parseFloat(n.getAttribute('data-count'));
+    const dec = parseInt(n.getAttribute('data-decimals') || '0', 10);
+    if (this.reduce) { n.textContent = target.toFixed(dec); return; }
+    const dur = 950, t0 = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      n.textContent = (target * ease(p)).toFixed(dec);
+      if (p < 1) requestAnimationFrame(step); else n.textContent = target.toFixed(dec);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- circuit diagram signal pulse ---------- */
+  setupDiagram(root) {
+    const svg = root.querySelector('[data-svg]');
+    if (!svg || this.reduce) return;
+    const connectors = [...svg.querySelectorAll('[data-connector]')];
+    const pulses = [...svg.querySelectorAll('[data-pulse]')];
+    const head = svg.querySelector('[data-pulsehead]');
+    if (!connectors.length) return;
+    const samples = connectors.map(p => {
+      const L = p.getTotalLength(); const arr = [];
+      for (let i = 0; i <= 16; i++) arr.push(p.getPointAtLength(L * i / 16));
+      return arr;
+    });
+    const toSvg = (e) => {
+      const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      const m = svg.getScreenCTM(); if (!m) return null;
+      return pt.matrixTransform(m.inverse());
+    };
+    const start = (idx) => {
+      if (this.pulsing) return;
+      this.pulsing = true;
+      const path = pulses[idx];
+      const len = path.getTotalLength();
+      const dash = 22;
+      path.style.strokeDasharray = `${dash} ${len + dash}`;
+      const t0 = performance.now(), dur = 680;
+      const ease = t => t * t * (3 - 2 * t);
+      const frame = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        const e = ease(p);
+        path.style.strokeDashoffset = (len - e * (len + dash)).toString();
+        const pt = path.getPointAtLength(Math.min(len, e * len));
+        head.setAttribute('cx', pt.x); head.setAttribute('cy', pt.y);
+        head.style.opacity = p < 1 ? '1' : '0';
+        if (p < 1) requestAnimationFrame(frame);
+        else { path.style.strokeDashoffset = '9999'; head.style.opacity = '0'; this.pulsing = false; }
+      };
+      requestAnimationFrame(frame);
+    };
+    svg.addEventListener('mousemove', (e) => {
+      if (this.pulsing) return;
+      const m = toSvg(e); if (!m) return;
+      let best = 0, bd = Infinity;
+      samples.forEach((arr, i) => {
+        arr.forEach(pt => {
+          const d = (pt.x - m.x) ** 2 + (pt.y - m.y) ** 2;
+          if (d < bd) { bd = d; best = i; }
+        });
+      });
+      start(best);
+    });
+  }
+
+  /* ---------- hovers: deps build sweep, project caret ---------- */
+  setupHovers(root) {
+    root.querySelectorAll('[data-deps]').forEach(c => {
+      const tags = [...c.querySelectorAll('[data-dep]')];
+      c.addEventListener('mouseenter', () => tags.forEach((t, i) => setTimeout(() => { t.style.color = 'var(--text)'; t.style.borderColor = 'var(--accent-dim)'; }, i * 55)));
+      c.addEventListener('mouseleave', () => tags.forEach(t => { t.style.color = 'var(--text-muted)'; t.style.borderColor = 'var(--line)'; }));
+    });
+    root.querySelectorAll('[data-projhead]').forEach(h => {
+      const caret = h.querySelector('[data-caret]');
+      if (!caret) return;
+      h.addEventListener('mouseenter', () => caret.style.opacity = '1');
+      h.addEventListener('mouseleave', () => caret.style.opacity = '0');
+    });
+  }
+
+  /* ---------- buttons ---------- */
+  setupButtons(root) {
+    const vs = root.querySelector('[data-viewsource]');
+    if (vs) vs.addEventListener('click', () => {
+      const t = root.querySelector('#projects');
+      if (t) window.scrollTo({ top: window.scrollY + t.getBoundingClientRect().top - 32, behavior: this.reduce ? 'auto' : 'smooth' });
+    });
+    const rs = root.querySelector('[data-resume]');
+    if (rs) rs.addEventListener('click', () => window.print());
+  }
+
+  /* ---------- mobile menu ---------- */
+  setupMobile(root) {
+    const burger = root.querySelector('[data-hamburger]');
+    const menu = root.querySelector('.pf-mobilemenu');
+    if (burger && menu) burger.addEventListener('click', () => menu.classList.toggle('open'));
+  }
+
+  renderVals() {
+    return { rootRef: this.rootRef };
+  }
+}
+</script>
+</body>
+</html>
