@@ -460,7 +460,7 @@
             <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/contact — mohamed@portfolio</span>
           </div>
           <div class="pf-sec-pad" style="padding:30px;font-family:var(--mono);font-size:14px;line-height:2.1;color:var(--text);overflow-wrap:anywhere;">
-            <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> contact --email <a href="/cdn-cgi/l/email-protection#bfd2d6dbd091c6d0d1dacc8effd8d2ded6d391dcd0d2" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;"><span class="__cf_email__" data-cfemail="e38e8a878ccd9a8c8d8690d2a3848e828a8fcd808c8e">[email&#160;protected]</span></a> <span style="color:var(--text-muted);">--phone</span> +20 111 227 3329</div>
+            <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> contact --email <a data-email href="mailto:mido.yones1@gmail.com" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;">mido.yones1@gmail.com</a><span style="color:var(--text-muted);">--phone</span> +20 111 227 3329</div>
             <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> open <a href="https://www.linkedin.com/in/mohamed-younes-152820266/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;">--linkedin</a> <a href="https://github.com/mohamedAY2004" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;">--github</a></div>
             <div><span style="color:var(--text);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> <span style="display:inline-block;width:9px;height:18px;background:var(--accent);vertical-align:-3px;animation:pfblink 1s steps(1) infinite;"></span></div>
           </div>
@@ -568,6 +568,9 @@ class Component extends DCLogic {
       const mark = window.innerHeight * 0.38;
       let cur = sections.length ? sections[0].id : 'hero';
       sections.forEach(s => { if (s.getBoundingClientRect().top <= mark) cur = s.id; });
+      const docEl = document.documentElement;
+      const atBottom = window.innerHeight + window.scrollY >= (docEl.scrollHeight || document.body.scrollHeight) - 2;
+      if (atBottom && sections.length) cur = sections[sections.length - 1].id;
       setActive(cur);
     };
 
