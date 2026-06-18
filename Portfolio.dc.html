@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  html,body{margin:0;padding:0;overflow-x:hidden;background:#0B0F14;max-width:100%;}
   ::selection{background:#E8893D;color:#0B0F14;}
   @keyframes pfblink{50%{opacity:0;}}
   @keyframes pfscan{0%{top:0;opacity:.9;}100%{top:100%;opacity:0;}}
@@ -30,7 +30,7 @@
     .pf-diagram-h{display:none !important;}
     .pf-diagram-v{display:flex !important;}
     .pf-mobilemenu.open{display:block !important;}
-    .pf-hero-name{font-size:44px !important;}
+    .pf-hero-name{font-size:clamp(26px,8.4vw,46px) !important;word-break:break-word;overflow-wrap:anywhere;}
     .pf-sec-pad{padding:20px 18px !important;}
   }
 </style>
@@ -460,7 +460,7 @@
             <span style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">~/contact — mohamed@portfolio</span>
           </div>
           <div class="pf-sec-pad" style="padding:30px;font-family:var(--mono);font-size:14px;line-height:2.1;color:var(--text);overflow-wrap:anywhere;">
-            <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> contact --email <a href="/cdn-cgi/l/email-protection#f29f9b969ddc8b9d9c9781c3b2959f939b9edc919d9f" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;"><span class="__cf_email__" data-cfemail="3c5155585312455352594f0d7c5b515d5550125f5351">[email&#160;protected]</span></a> <span style="color:var(--text-muted);">--phone</span> +20 111 227 3329</div>
+            <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> contact --email <a href="/cdn-cgi/l/email-protection#bfd2d6dbd091c6d0d1dacc8effd8d2ded6d391dcd0d2" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;"><span class="__cf_email__" data-cfemail="e38e8a878ccd9a8c8d8690d2a3848e828a8fcd808c8e">[email&#160;protected]</span></a> <span style="color:var(--text-muted);">--phone</span> +20 111 227 3329</div>
             <div><span style="color:var(--status);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> open <a href="https://www.linkedin.com/in/mohamed-younes-152820266/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;">--linkedin</a> <a href="https://github.com/mohamedAY2004" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;" style-hover="text-decoration:underline;">--github</a></div>
             <div><span style="color:var(--text);">mohamed@portfolio</span><span style="color:var(--text-muted);">:~$</span> <span style="display:inline-block;width:9px;height:18px;background:var(--accent);vertical-align:-3px;animation:pfblink 1s steps(1) infinite;"></span></div>
           </div>
