@@ -718,26 +718,7 @@ class Component extends DCLogic {
     });
     const rs = root.querySelector('[data-resume]');
     if (rs) rs.addEventListener('click', () => {
-      const b64 = window.__RESUME_PDF_B64;
-      let url, isBlob = false;
-      if (b64) {
-        try {
-          const bin = atob(b64);
-          const bytes = new Uint8Array(bin.length);
-          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-          url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
-          isBlob = true;
-        } catch(e) { url = './Mohamed_Younes_cv.pdf'; }
-      } else {
-        url = './Mohamed_Younes_cv.pdf';
-      }
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Mohamed_Younes_CV.pdf';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      if (isBlob) setTimeout(() => URL.revokeObjectURL(url), 10000);
+      window.open('https://drive.google.com/file/d/1MABhQf5F3H28aIiAW-mg5DTjcuieh2IR/view', '_blank', 'noopener');
     });
   }
 
