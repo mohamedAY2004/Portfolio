@@ -190,32 +190,36 @@
 
               <!-- pipeline diagram SVG -->
               <div style="border:1px solid var(--line);background:var(--bg);margin-bottom:24px;padding:4px;">
-                <svg viewBox="0 0 880 312" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;">
+                <svg viewBox="0 0 880 344" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;">
                   <!-- connectors (back layer) -->
                   <!-- PDF → Ingestion -->
                   <path d="M154,58 V96" fill="none" stroke="#232C38" stroke-width="1"></path>
                   <!-- Ingestion → fork -->
                   <path d="M154,140 V160" fill="none" stroke="#232C38" stroke-width="1"></path>
-                  <!-- fork → chunks (left) -->
+                  <!-- fork → parser (left) -->
                   <path d="M154,160 H87 V180" fill="none" stroke="#232C38" stroke-width="1"></path>
                   <!-- fork → embed (right) -->
-                  <path d="M154,160 H263 V180" fill="none" stroke="#232C38" stroke-width="1"></path>
+                  <path d="M154,160 H264 V180" fill="none" stroke="#232C38" stroke-width="1"></path>
                   <!-- embed → vector store -->
-                  <path d="M263,220 V256" fill="none" stroke="#232C38" stroke-width="1"></path>
+                  <path d="M264,220 V256" fill="none" stroke="#232C38" stroke-width="1"></path>
                   <!-- vector store → RAG service (cross connector) -->
-                  <path d="M351,276 H480 V200 H608" fill="none" stroke="#232C38" stroke-width="1" stroke-dasharray="4 3"></path>
+                  <path d="M353,278 H440 V170 H607" fill="none" stroke="#232C38" stroke-width="1" stroke-dasharray="4 3"></path>
                   <!-- UserQ → JSON-Planner -->
-                  <path d="M702,58 V96" fill="none" stroke="#232C38" stroke-width="1"></path>
+                  <path d="M702,54 V82" fill="none" stroke="#232C38" stroke-width="1"></path>
                   <!-- JSON-Planner → RAG -->
-                  <path d="M702,140 V180" fill="none" stroke="#232C38" stroke-width="1"></path>
-                  <!-- RAG → LLM -->
-                  <path d="M702,220 V256" fill="none" stroke="#232C38" stroke-width="1"></path>
+                  <path d="M702,122 V150" fill="none" stroke="#232C38" stroke-width="1"></path>
+                  <!-- RAG → Rerank -->
+                  <path d="M702,190 V218" fill="none" stroke="#232C38" stroke-width="1"></path>
+                  <!-- Rerank → LLM -->
+                  <path d="M702,258 V286" fill="none" stroke="#232C38" stroke-width="1"></path>
                   <!-- arrow heads -->
                   <polygon points="154,96 150,88 158,88" fill="#232C38"></polygon>
-                  <polygon points="702,96 698,88 706,88" fill="#232C38"></polygon>
-                  <polygon points="702,180 698,172 706,172" fill="#232C38"></polygon>
-                  <polygon points="702,256 698,248 706,248" fill="#232C38"></polygon>
-                  <polygon points="608,200 600,196 600,204" fill="#232C38"></polygon>
+                  <polygon points="264,256 260,248 268,248" fill="#232C38"></polygon>
+                  <polygon points="702,82 698,74 706,74" fill="#232C38"></polygon>
+                  <polygon points="702,150 698,142 706,142" fill="#232C38"></polygon>
+                  <polygon points="702,218 698,210 706,210" fill="#232C38"></polygon>
+                  <polygon points="702,286 698,278 706,278" fill="#232C38"></polygon>
+                  <polygon points="607,170 599,166 599,174" fill="#232C38"></polygon>
 
                   <!-- LEFT: PDF/PPTX upload -->
                   <rect x="30" y="14" width="248" height="44" fill="#121821" stroke="#232C38" stroke-width="1"></rect>
@@ -227,15 +231,15 @@
                   <text x="42" y="116" fill="#6E7B8A" font-size="10">// service</text>
                   <text x="42" y="134" fill="#E7EAEE" font-size="14">Ingestion Service</text>
 
-                  <!-- chunks branch -->
+                  <!-- parser branch -->
                   <rect x="10" y="180" width="155" height="40" fill="#121821" stroke="#232C38" stroke-width="1"></rect>
-                  <text x="20" y="195" fill="#6E7B8A" font-size="9">// parser</text>
+                  <text x="20" y="195" fill="#6E7B8A" font-size="9">// parse</text>
                   <text x="20" y="212" fill="#E7EAEE" font-size="12">PyMuPDF · pptx</text>
 
-                  <!-- embed branch -->
+                  <!-- structure-aware chunk + embed branch -->
                   <rect x="175" y="180" width="178" height="40" fill="#121821" stroke="#232C38" stroke-width="1"></rect>
-                  <text x="185" y="195" fill="#6E7B8A" font-size="9">// embed</text>
-                  <text x="185" y="212" fill="#E7EAEE" font-size="12">Embed → chunks</text>
+                  <text x="185" y="195" fill="#6E7B8A" font-size="9">// chunk + embed</text>
+                  <text x="185" y="212" fill="#E7EAEE" font-size="12">structure-aware</text>
 
                   <!-- Vector Store -->
                   <rect x="175" y="256" width="178" height="44" fill="#121821" stroke="#E8893D" stroke-width="1"></rect>
@@ -243,24 +247,29 @@
                   <text x="185" y="292" fill="#E7EAEE" font-size="14">pgvector / Qdrant</text>
 
                   <!-- RIGHT: User question -->
-                  <rect x="596" y="14" width="212" height="44" fill="#121821" stroke="#232C38" stroke-width="1"></rect>
-                  <text x="608" y="34" fill="#6E7B8A" font-size="10">// query</text>
-                  <text x="608" y="52" fill="#E7EAEE" font-size="14">User question</text>
+                  <rect x="596" y="14" width="212" height="40" fill="#121821" stroke="#232C38" stroke-width="1"></rect>
+                  <text x="608" y="31" fill="#6E7B8A" font-size="10">// query</text>
+                  <text x="608" y="47" fill="#E7EAEE" font-size="14">User question</text>
 
                   <!-- JSON-Planner Agent (dashed — optional) -->
-                  <rect x="576" y="96" width="252" height="44" fill="#121821" stroke="#7A4F2A" stroke-width="1" stroke-dasharray="5 3"></rect>
-                  <text x="588" y="116" fill="#7A4F2A" font-size="10">// optional · AGENT_ENABLED=true</text>
-                  <text x="588" y="134" fill="#E7EAEE" font-size="14">JSON-Planner Agent</text>
+                  <rect x="576" y="82" width="252" height="40" fill="#121821" stroke="#7A4F2A" stroke-width="1" stroke-dasharray="5 3"></rect>
+                  <text x="588" y="99" fill="#7A4F2A" font-size="10">// optional · AGENT_ENABLED=true</text>
+                  <text x="588" y="115" fill="#E7EAEE" font-size="13">JSON-Planner Agent</text>
 
                   <!-- RAG Service -->
-                  <rect x="607" y="180" width="190" height="40" fill="#121821" stroke="#E8893D" stroke-width="1"></rect>
-                  <text x="618" y="196" fill="#6E7B8A" font-size="9">// retrieval</text>
-                  <text x="618" y="212" fill="#E7EAEE" font-size="13">RAG Service</text>
+                  <rect x="607" y="150" width="190" height="40" fill="#121821" stroke="#E8893D" stroke-width="1"></rect>
+                  <text x="618" y="167" fill="#6E7B8A" font-size="9">// retrieve · source-scoped</text>
+                  <text x="618" y="183" fill="#E7EAEE" font-size="13">RAG Service</text>
+
+                  <!-- Cross-encoder rerank (dashed — optional) -->
+                  <rect x="586" y="218" width="232" height="40" fill="#121821" stroke="#7A4F2A" stroke-width="1" stroke-dasharray="5 3"></rect>
+                  <text x="598" y="235" fill="#7A4F2A" font-size="10">// optional · RERANK_ENABLED=true</text>
+                  <text x="598" y="251" fill="#E7EAEE" font-size="13">Cross-encoder rerank</text>
 
                   <!-- LLM response -->
-                  <rect x="556" y="256" width="292" height="44" fill="#121821" stroke="#232C38" stroke-width="1"></rect>
-                  <text x="568" y="274" fill="#6E7B8A" font-size="9">// inference</text>
-                  <text x="568" y="292" fill="#E7EAEE" font-size="12">Gemini · OpenAI · Cohere · Ollama</text>
+                  <rect x="556" y="286" width="292" height="44" fill="#121821" stroke="#232C38" stroke-width="1"></rect>
+                  <text x="568" y="304" fill="#6E7B8A" font-size="9">// cited inference</text>
+                  <text x="568" y="322" fill="#E7EAEE" font-size="12">Gemini · OpenAI · Cohere · Ollama</text>
                 </svg>
               </div>
 
@@ -272,6 +281,7 @@
                 <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">postgresql</span>
                 <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">pgvector</span>
                 <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">qdrant</span>
+                <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">cross-encoder</span>
                 <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">alembic</span>
                 <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">pydantic-v2</span>
                 <span data-dep style="font-family:var(--mono);font-size:12px;color:var(--text-muted);border:1px solid var(--line);padding:3px 9px;transition:.18s;">docker</span>
@@ -281,7 +291,8 @@
               <!-- body copy -->
               <p style="font-family:var(--sans);font-size:15px;line-height:1.7;color:var(--text);margin:0 0 14px;max-width:780px;text-wrap:pretty;">Sole backend engineer on a 7-person graduation project. Built the entire FastAPI backend from scratch — 9 route groups, a full async SQLAlchemy stack with 14 ORM models, JWT auth with a token blocklist, and Alembic-managed migrations with a database seeder.</p>
               <p style="font-family:var(--sans);font-size:15px;line-height:1.7;color:var(--text);margin:0 0 14px;max-width:780px;text-wrap:pretty;">The AI layer runs a production RAG pipeline with a clean factory pattern: LLM provider (Gemini, OpenAI, Cohere, Ollama), embedding model, and vector store (pgvector or Qdrant) are all swappable at runtime via a single environment variable — no application code changes.</p>
-              <p style="font-family:var(--sans);font-size:15px;line-height:1.7;color:var(--text);margin:0 0 14px;max-width:780px;text-wrap:pretty;">The optional <span style="font-family:var(--mono);font-size:13px;color:var(--accent);">AGENT_ENABLED=true</span> JSON-Planner agentic layer decides per-turn whether retrieval is necessary — cutting redundant vector searches on follow-up questions and improving response coherence.</p>
+              <p style="font-family:var(--sans);font-size:15px;line-height:1.7;color:var(--text);margin:0 0 14px;max-width:780px;text-wrap:pretty;">The optional <span style="font-family:var(--mono);font-size:13px;color:var(--accent);">AGENT_ENABLED=true</span> JSON-Planner agentic layer decides per-turn whether retrieval is necessary — and can scope the search to named materials — cutting redundant vector searches on follow-up questions and improving response coherence.</p>
+              <p style="font-family:var(--sans);font-size:15px;line-height:1.7;color:var(--text);margin:0 0 14px;max-width:780px;text-wrap:pretty;">Ingestion is structure-aware: tables stay intact as Markdown, headings become breadcrumbs, and every chunk is stamped with its source. An optional <span style="font-family:var(--mono);font-size:13px;color:var(--accent);">RERANK_ENABLED=true</span> cross-encoder over-fetches for recall then truncates to the best chunks for precision, so the model gets fewer, cleaner, source-cited context — soft-degrading to vector order if it ever faults.</p>
               <p style="font-family:var(--sans);font-size:15px;line-height:1.7;color:var(--text);margin:0 0 22px;max-width:780px;text-wrap:pretty;">Platform serves three roles: students chat with uploaded documents or AI tutors scoped to their enrolled subjects; instructors upload and manage course materials and preview the bot before it goes live; admins monitor platform health, usage analytics, and response feedback across all subjects.</p>
 
               <a href="https://github.com/mohamedAY2004/DOCMIND" target="_blank" rel="noopener" style="display:inline-flex;gap:9px;font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);padding:9px 13px;transition:.2s;" style-hover="border-color:#7A4F2A;color:#E7EAEE;"><span style="color:var(--accent);">$</span>git clone github.com/mohamedAY2004/DOCMIND</a>
