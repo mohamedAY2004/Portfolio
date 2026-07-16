@@ -37,11 +37,20 @@ There is nothing to build or lint. Validate changes by reloading the page in a b
 
 Much of the JS keys off custom `data-*` attributes rather than the directives above:
 
-- `data-text="..."` — the literal is typed out character-by-character on boot; the element renders empty until then. A safety timeout at ~4.5s force-fills any `data-text` node still empty.
-- `data-count` / `data-decimals` — animated number counters.
+- `data-text` (bare marker) — the element's **own text content** is captured at mount, cleared, and typed out character-by-character on boot. Write the text as normal text content, not in the attribute. A safety timeout at ~4.5s force-fills any node still empty.
+- `data-count` (bare marker) / `data-decimals` — animated number counters. The **real final value is the element's text content**; the animation counts up from 0 to it.
 - `data-nav`, `data-square`, `data-hamburger`, `data-fill`, `data-herobody` — hooks for nav state, reveal fills, and mobile menu.
 
 When adding content, follow these patterns (e.g. give a headline `data-text` if it should type in). Respect `prefers-reduced-motion`: the component branches to `fillBootInstant` / `revealAll` when reduced motion is set, so any new animation should have an instant fallback.
+
+### Bot/SEO readability — do not regress this
+
+The raw HTML must stay fully readable without JavaScript (crawlers, link previews, and ATS systems do not run JS):
+
+- All content ships as real text nodes in the markup; `data-text` / `data-count` values live in text content (see above), never only in attributes.
+- **Never put `opacity:0` (or other hiding) inline** on `data-reveal`, `data-stagger`, or `data-herobody` elements — the component script applies the hidden-until-animation state at mount (`setupReveals` / `componentDidMount`), so no-JS readers see everything.
+- The real `<head>` carries `<title>`, meta description, Open Graph tags, and a JSON-LD `Person` block. Update these if the headline facts change (role, GPA, contest results, contact links).
+- `vercel.json` rewrites `/` to `/Portfolio.html` so the page is served at the site root on Vercel.
 
 ## Editing guidance
 
